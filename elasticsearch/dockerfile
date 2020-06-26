@@ -1,0 +1,5 @@
+FROM docker.elastic.co/elasticsearch/elasticsearch:6.5.1
+RUN bin/elasticsearch-plugin install --batch https://artifacts.elastic.co/downloads/elasticsearch-plugins/analysis-icu/analysis-icu-6.5.1.zip
+RUN bin/elasticsearch-plugin install --batch https://artifacts.elastic.co/downloads/elasticsearch-plugins/analysis-kuromoji/analysis-kuromoji-6.5.1.zip
+RUN bin/elasticsearch-plugin install --batch https://artifacts.elastic.co/downloads/elasticsearch-plugins/analysis-smartcn/analysis-smartcn-6.5.1.zip
+RUN bin/elasticsearch-plugin install --batch https://artifacts.elastic.co/downloads/elasticsearch-plugins/analysis-stempel/analysis-stempel-6.5.1.zip

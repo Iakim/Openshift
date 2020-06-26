@@ -1,0 +1,81 @@
+###################################################################################
+## Openshift                                                                     ##
+## Author: https://github.com/Iakim                                              ##
+## Simplicity is the ultimate degree of sophistication                           ##
+###################################################################################
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: liferay-cluster
+spec:
+  serviceName: "liferay-cluster"
+  replicas: 2
+  selector:
+    matchLabels:
+      app: liferay-cluster
+  template:
+    metadata:
+      labels:
+        app: liferay-cluster
+    spec:
+      hostAliases:
+      - ip: "172.17.0.10"
+        hostnames:
+        - "liferay-cluster-0"
+      - ip: "172.17.0.12"
+        hostnames:
+        - "liferay-cluster-1"
+      containers:
+      - name: liferay-cluster
+        image: iakim/liferay:7.1.3CEGA4
+        env:
+          - name: JAVA_OPTS
+            value: -server -Xmx4g -Xms4g -Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8 -XX:SurvivorRatio=6 -Djboss.modules.policy-permissions=true -XX:+DoEscapeAnalysis -XX:+UseG1GC -XX:+UseStringDeduplication -XX:+ExplicitGCInvokesConcurrent -XX:MaxGCPauseMillis=500 -XX:+UseFastAccessorMethods -XX:ParallelGCThreads=2 -Duser.language=pt -Duser.region=BR -Duser.country=BR -Djava.awt.headless=true -XX:+UseCompressedOops -Duser.timezone=America/Sao_Paulo -Djboss.as.management.blocking.timeout=600
+        ports:
+        - containerPort: 8080
+          name: liferay
+        - containerPort: 9990
+          name: jboss
+        volumeMounts:
+          - mountPath: /opt/jboss/deploy
+            name: liferay-deploy
+          - mountPath: /opt/jboss/logs
+            name: liferay-logs
+          - mountPath: /opt/jboss/osgi/modules
+            name: liferay-modules
+          - mountPath: /opt/jboss/osgi/war
+            name: liferay-war
+          - mountPath: /mnt/nfs/liferay/document_library
+            name: liferay-dl
+      volumes:
+      - name: liferay-deploy
+        persistentVolumeClaim:
+          claimName: liferay-deploy-pvc
+      - name: liferay-logs
+        persistentVolumeClaim:
+          claimName: liferay-logs-pvc
+      - name: liferay-modules
+        persistentVolumeClaim:
+          claimName: liferay-modules-pvc
+      - name: liferay-war
+        persistentVolumeClaim:
+          claimName: liferay-war-pvc
+      - name: liferay-dl
+        persistentVolumeClaim:
+          claimName: liferay-dl-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: liferay-cluster
+  labels:
+    service: liferay-cluster
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8080
+    name: liferay
+  - port: 9990
+    name: jboss
+  selector:
+    app: liferay-cluster

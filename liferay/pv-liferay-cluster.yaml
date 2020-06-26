@@ -1,0 +1,79 @@
+###################################################################################
+## Openshift                                                                     ##
+## Author: https://github.com/Iakim                                              ##
+## Simplicity is the ultimate degree of sophistication                           ##
+###################################################################################
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: liferay-deploy-pv
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 100Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/nfs/liferay/tst-7.1.3-CE-GA4/deploy"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: liferay-logs-pv
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 100Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/nfs/liferay/tst-7.1.3-CE-GA4/logs"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: liferay-modules-pv
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 200Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/nfs/liferay/tst-7.1.3-CE-GA4/modules"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: liferay-war-pv
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 200Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/nfs/liferay/tst-7.1.3-CE-GA4/war"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: liferay-dl-pv
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/nfs/liferay/tst-7.1.3-CE-GA4/document_library"

@@ -1,0 +1,16 @@
+###################################################################################
+## Openshift                                                                     ##
+## Author: https://github.com/Iakim                                              ##
+## Simplicity is the ultimate degree of sophistication                           ##
+###################################################################################
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: elastic-pvc
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
