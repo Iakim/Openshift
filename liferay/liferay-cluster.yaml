@@ -22,7 +22,7 @@ spec:
       - ip: "172.17.0.10"
         hostnames:
         - "liferay-cluster-0"
-      - ip: "172.17.0.12"
+      - ip: "172.17.0.11"
         hostnames:
         - "liferay-cluster-1"
       containers:
