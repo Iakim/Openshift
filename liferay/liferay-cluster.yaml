@@ -90,3 +90,5 @@ spec:
   to:
     kind: Service
     name: liferay-cluster
+  port:
+    targetPort: liferay
