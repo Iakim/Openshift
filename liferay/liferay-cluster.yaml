@@ -89,4 +89,4 @@ spec:
   path: ""
   to:
     kind: Service
-    name: liferay-cluster-route
+    name: liferay-cluster
