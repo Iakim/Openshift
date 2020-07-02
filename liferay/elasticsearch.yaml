@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name: elasticsearch
-        image: elasticsearch-liferay:6.5.1
+        image: iakim/elasticsearch-liferay:6.5.1
         env:
         - name: discovery.type
           value: single-node

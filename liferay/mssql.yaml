@@ -28,7 +28,7 @@ spec:
       terminationGracePeriodSeconds: 10
       containers:
       - name: mssql
-        image: microsoft/mssql-server-linux
+        image: iakim/mssql-liferay
         ports:
         - containerPort: 1433
         env:
