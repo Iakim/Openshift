@@ -39,6 +39,10 @@ spec:
             secretKeyRef:
               name: mssql
               key: SA_PASSWORD
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/sh", "-c", "/opt/mssql-tools/bin/sqlcmd -s 127.0.0.1 -Usa -P 1qaz@wsx -Q 'EXIT(CREATE DATABASE lportal;)'"]
         volumeMounts:
         - name: mssql-persistent-storage
           mountPath: /var/opt/mssql
@@ -59,3 +63,4 @@ spec:
       port: 1433
       targetPort: 1433
   type: LoadBalancer
+
