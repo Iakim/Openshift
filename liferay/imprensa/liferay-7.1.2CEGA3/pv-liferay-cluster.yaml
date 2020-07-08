@@ -1,0 +1,79 @@
+###################################################################################
+## Openshift                                                                     ##
+## Author: https://github.com/Iakim                                              ##
+## Simplicity is the ultimate degree of sophistication                           ##
+###################################################################################
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: liferay-712cega3-deploy-pv
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 100Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/nfs/liferay/imprensa/712cega3/deploy"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: liferay-712cega3-logs-pv
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 100Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/nfs/liferay/imprensa/712cega3/logs"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: liferay-712cega3-modules-pv
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 200Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/nfs/liferay/imprensa/712cega3/modules"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: liferay-712cega3-war-pv
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 200Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/nfs/liferay/imprensa/712cega3/war"
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: liferay-712cega3-dl-pv
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/nfs/liferay/imprensa/712cega3/document_library"

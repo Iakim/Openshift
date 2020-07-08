@@ -6,7 +6,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: liferay-deploy-pvc
+  name: liferay-713cega4-deploy-pvc
 spec:
   storageClassName: manual
   accessModes:
@@ -18,7 +18,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: liferay-logs-pvc
+  name: liferay-713cega4-logs-pvc
 spec:
   storageClassName: manual
   accessModes:
@@ -30,7 +30,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: liferay-modules-pvc
+  name: liferay-713cega4-modules-pvc
 spec:
   storageClassName: manual
   accessModes:
@@ -42,7 +42,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: liferay-war-pvc
+  name: liferay-713cega4-war-pvc
 spec:
   storageClassName: manual
   accessModes:
@@ -54,7 +54,7 @@ spec:
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: liferay-dl-pvc
+  name: liferay-713cega4-dl-pvc
 spec:
   storageClassName: manual
   accessModes:

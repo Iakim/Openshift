@@ -6,28 +6,21 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: liferay-cluster
+  name: liferay-712cega3
 spec:
-  serviceName: "liferay-cluster"
+  serviceName: "liferay-712cega3"
   replicas: 1
   selector:
     matchLabels:
-      app: liferay-cluster
+      app: liferay-712cega3
   template:
     metadata:
       labels:
-        app: liferay-cluster
+        app: liferay-712cega3
     spec:
-      hostAliases:
-      - ip: "172.17.0.10"
-        hostnames:
-        - "liferay-cluster-0"
-      - ip: "172.17.0.11"
-        hostnames:
-        - "liferay-cluster-1"
       containers:
-      - name: liferay-cluster
-        image: iakim/liferay:7.1.3CEGA4
+      - name: liferay-712cega3
+        image: iakim/liferay:7.1.2CEGA3
         env:
           - name: JAVA_OPTS
             value: -server -Xmx4g -Xms4g -Djava.net.preferIPv4Stack=true -Dfile.encoding=UTF-8 -XX:SurvivorRatio=6 -Djboss.modules.policy-permissions=true -XX:+DoEscapeAnalysis -XX:+UseG1GC -XX:+UseStringDeduplication -XX:+ExplicitGCInvokesConcurrent -XX:MaxGCPauseMillis=500 -XX:+UseFastAccessorMethods -XX:ParallelGCThreads=2 -Duser.language=pt -Duser.region=BR -Duser.country=BR -Djava.awt.headless=true -XX:+UseCompressedOops -Duser.timezone=America/Sao_Paulo -Djboss.as.management.blocking.timeout=600
@@ -38,38 +31,38 @@ spec:
           name: jboss
         volumeMounts:
           - mountPath: /opt/jboss/deploy
-            name: liferay-deploy
+            name: liferay-712cega3-deploy
           - mountPath: /opt/jboss/logs
-            name: liferay-logs
+            name: liferay-712cega3-logs
           - mountPath: /opt/jboss/osgi/modules
-            name: liferay-modules
+            name: liferay-712cega3-modules
           - mountPath: /opt/jboss/osgi/war
-            name: liferay-war
+            name: liferay-712cega3-war
           - mountPath: /mnt/nfs/liferay/document_library
-            name: liferay-dl
+            name: liferay-712cega3-dl
       volumes:
-      - name: liferay-deploy
+      - name: liferay-712cega3-deploy
         persistentVolumeClaim:
-          claimName: liferay-deploy-pvc
-      - name: liferay-logs
+          claimName: liferay-712cega3-deploy-pvc
+      - name: liferay-712cega3-logs
         persistentVolumeClaim:
-          claimName: liferay-logs-pvc
-      - name: liferay-modules
+          claimName: liferay-712cega3-logs-pvc
+      - name: liferay-712cega3-modules
         persistentVolumeClaim:
-          claimName: liferay-modules-pvc
-      - name: liferay-war
+          claimName: liferay-712cega3-modules-pvc
+      - name: liferay-712cega3-war
         persistentVolumeClaim:
-          claimName: liferay-war-pvc
-      - name: liferay-dl
+          claimName: liferay-712cega3-war-pvc
+      - name: liferay-712cega3-dl
         persistentVolumeClaim:
-          claimName: liferay-dl-pvc
+          claimName: liferay-712cega3-dl-pvc
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: liferay-cluster
+  name: liferay-712cega3
   labels:
-    service: liferay-cluster
+    service: liferay-712cega3
 spec:
   type: LoadBalancer
   ports:
@@ -78,17 +71,17 @@ spec:
   - port: 9990
     name: jboss
   selector:
-    app: liferay-cluster
+    app: liferay-712cega3
 ---
 apiVersion: v1
 kind: Route
 metadata:
-  name: liferay-cluster-route
+  name: liferay-712cega3-route
 spec:
-  host: liferay-cluster-7-1-3-ce-ga4.seatecnologia.com.br
+  host: liferay-7-1-2-ce-ga3.seatecnologia.com.br
   path: ""
   to:
     kind: Service
-    name: liferay-cluster
+    name: liferay-712cega3
   port:
     targetPort: liferay
